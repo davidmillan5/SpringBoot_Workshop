@@ -1,6 +1,7 @@
 package com.agora.service.impl;
 
 import com.agora.dto.BookDto;
+import com.agora.exception.MyHandleException;
 import com.agora.model.Book;
 import com.agora.repository.IBookRepository;
 import com.agora.service.IBookService;
@@ -53,7 +54,7 @@ public class BookServiceImpl implements IBookService {
     public ResponseEntity<Book> findById(String id) {
         return iBookRepository.findById(id)
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new MyHandleException("No book found with the ID: " + id));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class BookServiceImpl implements IBookService {
                     Book updatedBook = iBookRepository.save(existingBook);
                     return ResponseEntity.ok(updatedBook);
                 })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new MyHandleException("No book found with the ID: " + id));
     }
 
     @Override
@@ -83,43 +84,64 @@ public class BookServiceImpl implements IBookService {
                     iBookRepository.delete(book);
                     return ResponseEntity.noContent().<Void>build();
                 })
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new MyHandleException("No book found with the ID: " + id));
     }
 
     @Override
     public ResponseEntity<Book> findByTitle(String title) {
         return iBookRepository.findBookByTitle(title)
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new MyHandleException("No book found with the title: " + title));
     }
 
     @Override
     public ResponseEntity<List<Book>> findByTitleContaining(String title) {
         List<Book> books = iBookRepository.findBookByTitleContaining(title);
-        return ResponseEntity.ok(books);
+        if(!books.isEmpty()) {
+            return ResponseEntity.ok(books);
+        }else{
+            throw new MyHandleException("No books found for the title containing: " + title);
+        }
     }
 
     @Override
     public ResponseEntity<List<Book>> findByAuthor(String author) {
         List<Book> books = iBookRepository.findBookByAuthorContaining(author);
-        return ResponseEntity.ok(books);
+        if(!books.isEmpty()) {
+            return ResponseEntity.ok(books);
+        }else{
+            throw new MyHandleException("No books found for the author: " + author);
+        }
     }
 
     @Override
     public ResponseEntity<List<Book>> findByGenre(String genre) {
         List<Book> books = iBookRepository.findBookByGenre(genre);
-        return ResponseEntity.ok(books);
+        if(!books.isEmpty()) {
+            return ResponseEntity.ok(books);
+        }else{
+            throw new MyHandleException("No books found for the genre: " + genre);
+        }
+
     }
 
     @Override
     public ResponseEntity<List<Book>> findByPublicationDate(LocalDate published) {
         List<Book> books = iBookRepository.findBookByPublished(published);
-        return ResponseEntity.ok(books);
+        if (!books.isEmpty()) {
+            return ResponseEntity.ok(books);
+        } else {
+            throw new MyHandleException("No books found for the publication date: " + published);
+        }
     }
 
     @Override
     public ResponseEntity<List<Book>> findByPublisher(String publisher) {
         List<Book> books = iBookRepository.findBookByPublisher(publisher);
-        return ResponseEntity.ok(books);
+        if (!books.isEmpty()) {
+            return ResponseEntity.ok(books);
+        } else {
+            throw new MyHandleException("No books found for the publisher: " + publisher);
+        }
     }
 }
