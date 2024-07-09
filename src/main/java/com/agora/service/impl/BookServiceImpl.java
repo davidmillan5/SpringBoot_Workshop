@@ -107,7 +107,7 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public ResponseEntity<List<Book>> findByGenre(String genre) {
-        List<Book> books = iBookRepository.findBookByCategory(genre);
+        List<Book> books = iBookRepository.findBookByGenre(genre);
         return ResponseEntity.ok(books);
     }
 
@@ -119,7 +119,7 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public ResponseEntity<List<Book>> findByPublisher(String publisher) {
-        List<Book> books = iBookRepository.finBookByPublisher(publisher);
+        List<Book> books = iBookRepository.findBookByPublisher(publisher);
         return ResponseEntity.ok(books);
     }
 }
