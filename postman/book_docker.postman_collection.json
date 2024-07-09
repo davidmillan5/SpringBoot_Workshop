@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "606c31aa-c831-402a-8884-774e6a2b954b",
+		"name": "book_docker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24562678"
+	},
+	"item": [
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "createBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Children of Dune\",\r\n  \"author\": \"Frank Herbert\",\r\n  \"isbn\": \"0593098242\",\r\n  \"publisher\": \"Ace\",\r\n  \"pages\": 416,\r\n  \"published\": \"1976-08-15\",\r\n  \"edition\": \"Mass Market Paperback\",\r\n  \"genre\": \"Science Fiction\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/book"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/book"
+					},
+					"response": []
+				},
+				{
+					"name": "getBookById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Dune\",\r\n  \"author\": \"Frank Herbert\",\r\n  \"isbn\": \"0593098234\",\r\n  \"publisher\": \"Ace\",\r\n  \"pages\": 604,\r\n  \"published\": \"1965-06-01\",\r\n  \"edition\": \"Mass Market Paperback\",\r\n  \"genre\": \"Science Fiction\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/book/04a9ad75-97d1-47d9-aa31-516e6d027948"
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookByTitle",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookByContainingTitle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/book/titleContaining/Dune"
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookByAuthor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/book/author/Frank Herbert"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/book/genre/Science Fiction"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
