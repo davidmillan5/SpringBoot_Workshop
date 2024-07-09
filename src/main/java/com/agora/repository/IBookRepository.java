@@ -6,12 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IBookRepository extends JpaRepository<Book, String> {
+    Optional<Book> findBookByTitle(String title);
     List<Book> findBookByCategory(String genre);
     List<Book> finBookByPublisher(String publisher);
-    List<Book> findBookByPublisherAndPublished(String publisher, LocalDate published);
+    List<Book> findBookByPublished(LocalDate published);
     List<Book> findBookByTitleContaining(String title);
     List<Book> findBookByAuthorContaining(String author);
 }
