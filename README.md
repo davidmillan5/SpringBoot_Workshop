@@ -93,6 +93,16 @@ Contributions are welcome! To contribute to this project, please follow these st
    ```
 5. Create a Pull Request.
 
+## Swagger
+
+```
+
+http://localhost:8080/swagger-ui.html
+
+```
+
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

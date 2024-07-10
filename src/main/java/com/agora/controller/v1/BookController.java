@@ -1,4 +1,4 @@
-package com.agora.controller;
+package com.agora.controller.v1;
 
 import com.agora.dto.BookDto;
 import com.agora.model.Book;
